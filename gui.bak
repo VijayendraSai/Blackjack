@@ -1,0 +1,57 @@
+#lang racket/gui
+(require 2htdp/image)
+(define spade (bitmap "spade.png"))
+(define club (bitmap "clubs.png"))
+(define heart (bitmap "heart.png"))
+(define diamond (bitmap "diamond.png"))
+
+  (define frame (new frame% [label "Blackjack"]))
+  (define msg (new message% [parent frame]
+                          [label "Welcome to Blackjack"]))
+
+(define panel
+(new horizontal-panel%
+[parent frame]
+[vert-margin 10]	 
+[horiz-margin 10]	 
+[border 10]
+[alignment '(center center)]
+[spacing 1]	 
+     ))
+
+(new message%	 
+   	 	[label "Dealer deck"]	 
+   	 	[parent panel])
+
+(define panel1
+(new vertical-panel%
+[parent panel]
+[vert-margin 10]	 
+[horiz-margin 10]	 
+[border 10]
+[alignment '(center center)]
+[spacing 1]	 
+     ))
+
+  (new button%
+       [parent panel1]
+       [label "Hit"]
+       [vert-margin 10]	 
+       [min-width 200]
+       [min-height 60]
+       [callback (lambda (button event)(print "HITTED"))])
+  
+  (new button%
+       [parent panel1]
+       [label "Stay"]
+       [vert-margin 10]	 
+       [min-width 200]
+       [min-height 60]
+       [callback (lambda (button event)(print "STAYED"))])
+
+
+
+(new message%	 
+   	 	[label "User deck"]	 
+   	 	[parent panel])
+  (send frame show #t)
